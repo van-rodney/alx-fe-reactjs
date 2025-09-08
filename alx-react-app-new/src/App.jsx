@@ -4,6 +4,7 @@ import WelcomeMessage from './components/WelcomeMessage';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
+import Counter from './components/Counter'; // 👈 NEW
 
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
@@ -48,7 +49,10 @@ function App() {
 
       {/* Task 1 Component */}
       <WelcomeMessage />
-     <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
+      <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
+
+      {/* Task 3 Component: Counter */}
+      <Counter />
     </>
   );
 }

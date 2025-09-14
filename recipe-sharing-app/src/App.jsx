@@ -1,7 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
+import FavoritesList from './components/FavoritesList';
+import RecommendationsList from './components/RecommendationsList';
 import SearchBar from './components/SearchBar';
 
 function App() {
@@ -10,16 +13,21 @@ function App() {
       <div>
         <h1>Recipe Sharing App</h1>
         <Routes>
+          {/* Home Page */}
           <Route
             path="/"
             element={
               <>
-                <SearchBar />
                 <AddRecipeForm />
+                <SearchBar />
                 <RecipeList />
+                <FavoritesList />
+                <RecommendationsList />
               </>
             }
           />
+
+          {/* Recipe Details Page */}
           <Route path="/recipe/:id" element={<RecipeDetailsWrapper />} />
         </Routes>
       </div>
@@ -27,8 +35,7 @@ function App() {
   );
 }
 
-// Wrapper to get the recipe ID from the route
-import { useParams } from 'react-router-dom';
+// Wrapper to get the recipe ID from the URL
 const RecipeDetailsWrapper = () => {
   const { id } = useParams();
   return <RecipeDetails recipeId={Number(id)} />;

@@ -14,8 +14,8 @@ function App() {
             path="/"
             element={
               <>
+                <SearchBar />
                 <AddRecipeForm />
-                <SearchBar /> {/* 🔹 New SearchBar */}
                 <RecipeList />
               </>
             }
@@ -27,6 +27,7 @@ function App() {
   );
 }
 
+// Wrapper to get the recipe ID from the route
 import { useParams } from 'react-router-dom';
 const RecipeDetailsWrapper = () => {
   const { id } = useParams();

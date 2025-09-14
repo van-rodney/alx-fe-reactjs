@@ -1,46 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-// ✅ Import your new components
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
+import RecipeDetails from './components/RecipeDetails';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App" style={{ padding: '20px', fontFamily: 'Arial' }}>
+    <Router>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1>Recipe Sharing App</h1>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <AddRecipeForm />
+                <RecipeList />
+              </>
+            }
+          />
+          <Route path="/recipe/:id" element={<RecipeDetailsWrapper />} />
+        </Routes>
       </div>
-      
-      <h1>🍲 Recipe Sharing App</h1>
-
-      {/* ✅ Your new components go here */}
-      <AddRecipeForm />
-      <RecipeList />
-
-      {/* Keeping the original Vite starter content */}
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    </Router>
+  );
 }
 
-export default App
+// Wrapper to get the recipe ID from the route
+import { useParams } from 'react-router-dom';
+const RecipeDetailsWrapper = () => {
+  const { id } = useParams();
+  return <RecipeDetails recipeId={Number(id)} />;
+};
+
+export default App;

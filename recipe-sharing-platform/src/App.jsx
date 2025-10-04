@@ -1,13 +1,9 @@
-// src/App.jsx
-import React from "react";
-import UserProfile from "./components/UserProfile";
-
 function App() {
   return (
-    <div>
-      <UserProfile />
-    </div>
-  );
+    <h1 className="text-3xl font-bold underline text-blue-500">
+      Hello Recipe Sharing Platform!
+    </h1>
+  )
 }
 
-export default App;
+export default App

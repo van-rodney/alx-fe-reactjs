@@ -13,7 +13,12 @@
     "formik": "^2.4.0",
     "yup": "^1.2.0"
   },
-  "devDependencies": {
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "formik": "^2.4.0",
+    "yup": "^1.2.0",
     "vite": "^5.0.0"
-  }
+  },
+  "devDependencies": {}
 }

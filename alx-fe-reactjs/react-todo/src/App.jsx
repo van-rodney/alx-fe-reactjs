@@ -1,11 +1,13 @@
-import React from 'react'
-import TodoList from './components/TodoList'
+import ControlledForm from './components/ControlledForm';
+import FormikForm from './components/FormikForm';
 
-export default function App(){
+function App() {
   return (
-    <div style={{padding:20}}>
-      <h1>Todo Demo</h1>
-      <TodoList />
+    <div>
+      <ControlledForm />
+      <FormikForm />
     </div>
-  )
+  );
 }
+
+export default App;

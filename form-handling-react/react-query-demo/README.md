@@ -1,3 +1,14 @@
+# React Query Demo
+
+This folder contains the React Query demo used by the assignment. Start the app with:
+
+```powershell
+cd react-query-demo
+npm install
+npm run dev
+```
+
+It demonstrates fetching posts from JSONPlaceholder with caching and refetch controls.
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

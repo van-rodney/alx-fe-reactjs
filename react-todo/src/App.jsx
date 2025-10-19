@@ -1,13 +1,12 @@
-import ControlledForm from './components/ControlledForm';
-import FormikForm from './components/FormikForm';
+import TodoList from './components/TodoList';
 
 function App() {
   return (
     <div>
-      <ControlledForm />
-      <FormikForm />
+      <h1>Todo List</h1>
+      <TodoList />
     </div>
-  );
+  )
 }
 
 export default App;

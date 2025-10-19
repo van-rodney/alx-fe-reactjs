@@ -31,8 +31,16 @@ export default function TodoList(){
       <AddTodoForm onAdd={addTodo} />
       <ul>
         {todos.map(t=> (
-          <li key={t.id}>
-            <span onClick={()=>toggleTodo(t.id)} style={{textDecoration: t.completed? 'line-through' : 'none', cursor:'pointer'}}>{t.text}</span>
+          <li key={t.id} data-testid={`todo-${t.id}`}>
+            <span
+              role="button"
+              tabIndex={0}
+              aria-pressed={t.completed}
+              onClick={()=>toggleTodo(t.id)}
+              style={{textDecoration: t.completed? 'line-through' : 'none', cursor:'pointer'}}
+            >
+              {t.text}
+            </span>
             <button onClick={()=>deleteTodo(t.id)} style={{marginLeft:8}}>Delete</button>
           </li>
         ))}

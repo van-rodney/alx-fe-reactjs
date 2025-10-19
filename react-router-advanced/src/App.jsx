@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, NavLink, Navigate, useNavigate } from 're
 import Profile from './components/Profile'
 import Home from './components/Home'
 import Post from './components/Post'
+import BlogPost from './components/BlogPost'
 import { AuthProvider, useAuth } from './context/AuthProvider'
 
 function ProtectedRoute({ children }){
@@ -17,7 +18,8 @@ function Nav(){
     <nav style={{padding:10}}>
       <NavLink to="/" style={({isActive})=>({marginRight:8, color:isActive? 'crimson' : undefined})}>Home</NavLink>
       <NavLink to="/profile" style={({isActive})=>({marginRight:8, color:isActive? 'crimson' : undefined})}>Profile</NavLink>
-      <NavLink to="/post/42" style={({isActive})=>({marginRight:8, color:isActive? 'crimson' : undefined})}>Post 42</NavLink>
+  <NavLink to="/post/42" style={({isActive})=>({marginRight:8, color:isActive? 'crimson' : undefined})}>Post 42</NavLink>
+  <NavLink to="/blog/hello-world" style={({isActive})=>({marginRight:8, color:isActive? 'crimson' : undefined})}>Blog: hello-world</NavLink>
       {auth?.isAuthenticated ? (
         <button onClick={()=>{ auth.logout(); nav('/') }} style={{marginLeft:12}}>Logout</button>
       ) : null}
@@ -43,6 +45,7 @@ export default function App(){
           <Route path="/" element={<Home/>} />
           <Route path="/profile/*" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
           <Route path="/post/:id" element={<Post/>} />
+          <Route path="/blog/:id" element={<BlogPost/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </BrowserRouter>

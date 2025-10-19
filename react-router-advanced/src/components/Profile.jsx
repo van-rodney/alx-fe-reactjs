@@ -1,5 +1,7 @@
 import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, Routes, Route } from 'react-router-dom'
+import ProfileDetails from './ProfileDetails'
+import ProfileSettings from './ProfileSettings'
 
 export default function Profile(){
   return (
@@ -10,6 +12,11 @@ export default function Profile(){
         <NavLink to="settings" style={({isActive})=>({color:isActive? 'crimson' : undefined})}>Settings</NavLink>
       </nav>
       <div style={{marginTop:12}}>
+        <Routes>
+          <Route index element={<ProfileDetails/>} />
+          <Route path="details" element={<ProfileDetails/>} />
+          <Route path="settings" element={<ProfileSettings/>} />
+        </Routes>
         <Outlet />
       </div>
     </div>

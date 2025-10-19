@@ -1,8 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, NavLink, Navigate, useNavigate } from 'react-router-dom'
 import Profile from './components/Profile'
-import ProfileDetails from './components/ProfileDetails'
-import ProfileSettings from './components/ProfileSettings'
 import Home from './components/Home'
 import Post from './components/Post'
 import { AuthProvider, useAuth } from './context/AuthProvider'
@@ -43,11 +41,7 @@ export default function App(){
         <Nav />
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}>
-            <Route index element={<ProfileDetails/>} />
-            <Route path="details" element={<ProfileDetails/>} />
-            <Route path="settings" element={<ProfileSettings/>} />
-          </Route>
+          <Route path="/profile/*" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
           <Route path="/post/:id" element={<Post/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>

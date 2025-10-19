@@ -17,7 +17,16 @@ export default function PostsComponent(){
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
-  const { data, error, isLoading, isError, refetch, isFetching, dataUpdatedAt } = useQuery(['posts'], fetchPosts)
+  const { data, error, isLoading, isError, refetch, isFetching, dataUpdatedAt } = useQuery(
+    ['posts'],
+    fetchPosts,
+    {
+      staleTime: 1000 * 60 * 5,
+      cacheTime: 1000 * 60 * 30,
+      refetchOnWindowFocus: false,
+      keepPreviousData: true
+    }
+  )
 
   const mutation = useMutation(createPost, {
     // optimistic update: add the new post to the cache immediately

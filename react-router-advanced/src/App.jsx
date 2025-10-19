@@ -4,12 +4,8 @@ import Profile from './components/Profile'
 import Home from './components/Home'
 import Post from './components/Post'
 import BlogPost from './components/BlogPost'
+import ProtectedRoute from './components/ProtectedRoute'
 import { AuthProvider, useAuth } from './context/AuthProvider'
-
-function ProtectedRoute({ children }){
-  const auth = useAuth()
-  return auth?.isAuthenticated ? children : <Navigate to="/" replace />
-}
 
 function Nav(){
   const auth = useAuth()

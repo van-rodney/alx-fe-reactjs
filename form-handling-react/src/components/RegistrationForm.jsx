@@ -12,9 +12,10 @@ export default function RegistrationForm(){
 
   function validate(){
     const errs = {}
-    if(!form.username.trim()) errs.username = 'Username is required'
-    if(!form.email.trim()) errs.email = 'Email is required'
-    if(!form.password.trim()) errs.password = 'Password is required'
+    const { username, email, password } = form
+    if (!username || !username.trim()) errs.username = 'Username is required'
+    if (!email || !email.trim()) errs.email = 'Email is required'
+    if (!password || !password.trim()) errs.password = 'Password is required'
     setErrors(errs)
     return Object.keys(errs).length === 0
   }

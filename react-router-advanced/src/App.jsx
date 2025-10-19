@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, NavLink, Navigate, useNavigate } from 'react-router-dom'
 import Profile from './components/Profile'
 import ProfileDetails from './components/ProfileDetails'
 import ProfileSettings from './components/ProfileSettings'
@@ -12,13 +12,35 @@ function ProtectedRoute({ children }){
   return auth?.isAuthenticated ? children : <Navigate to="/" replace />
 }
 
+function Nav(){
+  const auth = useAuth()
+  const nav = useNavigate()
+  return (
+    <nav style={{padding:10}}>
+      <NavLink to="/" style={({isActive})=>({marginRight:8, color:isActive? 'crimson' : undefined})}>Home</NavLink>
+      <NavLink to="/profile" style={({isActive})=>({marginRight:8, color:isActive? 'crimson' : undefined})}>Profile</NavLink>
+      <NavLink to="/post/42" style={({isActive})=>({marginRight:8, color:isActive? 'crimson' : undefined})}>Post 42</NavLink>
+      {auth?.isAuthenticated ? (
+        <button onClick={()=>{ auth.logout(); nav('/') }} style={{marginLeft:12}}>Logout</button>
+      ) : null}
+    </nav>
+  )
+}
+
+function NotFound(){
+  return (
+    <div style={{padding:20}}>
+      <h1>404 — Not Found</h1>
+      <p>The page you requested does not exist.</p>
+    </div>
+  )
+}
+
 export default function App(){
   return (
     <AuthProvider>
       <BrowserRouter>
-        <nav style={{padding:10}}>
-          <Link to="/">Home</Link> | <Link to="/profile">Profile</Link> | <Link to="/post/42">Post 42</Link>
-        </nav>
+        <Nav />
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}>
@@ -27,6 +49,7 @@ export default function App(){
             <Route path="settings" element={<ProfileSettings/>} />
           </Route>
           <Route path="/post/:id" element={<Post/>} />
+          <Route path="*" element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -2,9 +2,9 @@
 
 This small Vite + React project demonstrates advanced routing techniques using `react-router-dom` v6:
 
-- Nested routes (Profile -> Details / Settings)
-- Protected routes using a simple in-memory AuthProvider
-- Dynamic routing for variable URLs (e.g. `/post/:id`)
++ Nested routes (Profile -> Details / Settings)
++ Protected routes using an `AuthProvider` (auth state is persisted to `localStorage`)
++ Dynamic routing for variable URLs (e.g. `/post/:id`)
 
 Files of interest
 - `src/App.jsx` — Router setup, nested routes for `/profile`, and dynamic `/post/:id` route.
@@ -63,8 +63,8 @@ Testing the routes
 
 Notes & next steps
 
-- Auth is in-memory only (no persistence). To persist across reloads, extend `AuthProvider` to store auth state in `localStorage` or use a proper auth flow.
-- Consider adding a `NotFound` route (`path="*"`) in `App.jsx` for graceful 404 handling.
+- Auth state is persisted to `localStorage` for convenience in this demo. For production, use a secure auth flow and proper token/session management.
+- A simple `NotFound` route is included to display a 404 page for unknown routes. A `Logout` button is present in the top nav when authenticated.
 - Tests: add unit/integration tests (React Testing Library / Jest) or e2e tests (Playwright) to validate route protections.
 
-If you want, I can add any of the above enhancements (logout in nav, persistent auth, 404 page, or tests). Which would you like next?
+If you want, I can add any of the above enhancements (tests, stronger auth flow, or styling improvements). Which would you like next?

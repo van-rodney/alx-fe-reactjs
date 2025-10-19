@@ -1,10 +1,23 @@
 {
   "builds": [
     {
-      "src": "form-handling-react/react-query-demo/package.json",
+      "src": "form-handling-react/package.json",
       "use": "@vercel/static-build",
       "config": { "distDir": "dist" }
     }
   ],
   "routes": []
+}
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "form-handling-react/react-query-demo/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "form-handling-react/react-query-demo/dist" }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "form-handling-react/react-query-demo/$1" }
+  ]
 }
